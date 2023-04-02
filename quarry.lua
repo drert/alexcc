@@ -19,7 +19,7 @@ function digSquare(sLen)
         fDM(digDist)
         turtle.turnRight()
         if i ~= (duoEnd - 1) then
-            fDigMove(1)
+            fDM(1)
         end
         turtle.turnRight()
     end
