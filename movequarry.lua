@@ -1,11 +1,16 @@
 x,y,z = gps.locate()
 facing = 0 -- direction facing, 0 = start (north), 1-3 clockwise
+minDepth = -58
+
+dCx = 0
+dCy = 0
+dCz = 0
 
 function report() 
 
 end
 
-function CC() 
+function CW() 
     turtle.turnRight()
     facing = (facing + 1) % 4
 end
@@ -17,7 +22,7 @@ end
 
 function NORTH()
     while(facing ~= 0) do
-        CC()
+        CW()
     end
 end
 
@@ -54,9 +59,9 @@ function goToCoords(xt, yt, zt)
     write(" ")
     write(z)
     write(" ")
-    
-    dy = yt - y
+
     dx = xt - x
+    dy = yt - y
     dz = zt - z
 
     UP(dy + 2)
@@ -64,17 +69,17 @@ function goToCoords(xt, yt, zt)
     if dz < 0 then
         FW(-1 * dz)
     else
-        CC()
-        CC()
+        CW()
+        CW()
         FW(dz)
     end
     NORTH()
     if dx < 0 then
         CCW()
-        FW(-1 * dz)
+        FW(-1 * dx)
     else
-        CC()
-        FW(dz)
+        CW()
+        FW(dx)
     end
     DOWN(2)
 
@@ -100,6 +105,54 @@ function checkInvFull()
     return true
 end
 
+function digSquare(sLen)
+    local digDist = sLen - 1
+    local duoEnd = sLen / 2
+    for i = 0, duoEnd-1, 1 do
+        FW(digDist)
+        CCW()
+        FW(1)
+        CCW()
+        FW(digDist)
+        CW()
+        if i ~= (duoEnd - 1) then
+            fDM(1)
+        end
+        CW()
+    end
+    CW()
+end
+
+function dumpAll()
+    for i=1, 16, 1 do
+        turtle.select(i)
+        turtle.drop()
+    end
+end
+
+function Quarry(side)
+    for i = 0, minDepth - 1, 1 do
+        digSquare(side)
+        rx, ry, rz = gps.locate()
+        rfacing = 0
+        
+        if checkInvFull() then
+            goToCoords(dCx, dCy, dCz)
+            NORTH()
+            dumpAll()
+            goToCoords(rx, ry, rz)
+            NORTH()
+            for i=0, rfacing, 1 do
+                CW()
+            end
+        end
+
+        DOWN()
+
+    end
+
+end
 checkInvFull()
-goToCoords(-833, 63, 87)
-FW(1)
+goToCoords(-832, 64, 88)
+NORTH()
+dumpAll()
