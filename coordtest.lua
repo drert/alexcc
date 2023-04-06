@@ -71,7 +71,11 @@ function goToCoords(xt, yt, zt)
     end
     DOWN(2)
 
-    write(gps.locate())
+    x,y,z = gps.locate()
+    write(x)
+    write(y)
+    write(z)
+    write()
 end
 
 function checkInvFull()
