@@ -136,7 +136,8 @@ function dumpAll()
 end
 
 function Quarry(side)
-    for i = 0, minDepth - 1, 1 do
+    x, y, z = gps.locate()
+    while(y >= minDepth) do
         digSquare(side)
         rx, ry, rz = gps.locate()
         rfacing = 0
