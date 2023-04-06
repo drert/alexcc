@@ -5,6 +5,11 @@ minDepth = -58
 dCx = 0
 dCy = 0
 dCz = 0
+fCx = 0
+fCy = 0
+fCz = 0
+dCx, dCy, dCz = -832, 64, 88
+fCx, fCy, fCz = 0, 0, 0
 
 function report() 
 
@@ -146,13 +151,11 @@ function Quarry(side)
                 CW()
             end
         end
-
         DOWN()
-
     end
-
 end
 checkInvFull()
-goToCoords(-832, 64, 88)
-NORTH()
+goToCoords(-839, 55, 98)
+Quarry(8)
+
 dumpAll()
