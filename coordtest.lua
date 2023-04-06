@@ -15,6 +15,12 @@ function CCW()
     facing = (facing - 1) % 4
 end
 
+function NORTH()
+    while(facing ~= 0) do
+        CC()
+    end
+end
+
 function DOWN(dist)
     for i = 1, dist, 1 do
         turtle.digDown()
@@ -40,6 +46,34 @@ function Home()
     write("Turtle Returning Home")
 end
 
+function goToCoords(xt, yt, zt)
+    x, y, z = gps.locate()
+    dy = yt - y
+    dx = xt - x
+    dz = zt - z
+
+    UP(dy + 2)
+    NORTH()
+    if dz < 0 then
+        FW(dz)
+    else
+        CC()
+        CC()
+        FW(dz)
+    end
+    NORTH()
+    if dx < 0 then
+        CCW()
+        FW(dz)
+    else
+        CC()
+        FW(dz)
+    end
+    DOWN(2)
+
+    write(gps.locate())
+end
+
 function checkInvFull()
     for i=1, 16, 1 do
         turtle.select(i)
@@ -54,3 +88,4 @@ function checkInvFull()
 end
 
 checkInvFull()
+goToCoords(-833, 63, 87)
