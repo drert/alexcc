@@ -121,7 +121,7 @@ function digSquare(sLen)
         FW(digDist)
         CW()
         if i ~= (duoEnd - 1) then
-            fDM(1)
+            FW(1)
         end
         CW()
     end
@@ -157,6 +157,7 @@ function Quarry(side)
 end
 checkInvFull()
 goToCoords(-839, 55, 98)
+NORTH()
 Quarry(8)
 
 dumpAll()
