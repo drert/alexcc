@@ -140,7 +140,7 @@ function Quarry(side)
     while(y >= minDepth) do
         digSquare(side)
         rx, ry, rz = gps.locate()
-        rfacing = 0
+        rfacing = facing
         
         if checkInvFull() then
             goToCoords(dCx, dCy, dCz)
@@ -156,6 +156,7 @@ function Quarry(side)
     end
 end
 checkInvFull()
+turtle.select(1)
 goToCoords(-839, 55, 98)
 NORTH()
 Quarry(8)
