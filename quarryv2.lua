@@ -8,7 +8,7 @@ dCz = 0
 fCx = 0
 fCy = 0
 fCz = 0
-dCx, dCy, dCz = -832, 64, 88
+dCx, dCy, dCz = -847, 62, 99
 fCx, fCy, fCz = 0, 0, 0
 
 function report() 
@@ -157,7 +157,7 @@ function Quarry(side)
 end
 checkInvFull()
 turtle.select(1)
-goToCoords(-839, 55, 98)
+goToCoords(-841, 61, 104)
 NORTH()
 Quarry(8)
 
