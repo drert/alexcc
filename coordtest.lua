@@ -48,6 +48,13 @@ end
 
 function goToCoords(xt, yt, zt)
     x, y, z = gps.locate()
+    write(x)
+    write(" ")
+    write(y)
+    write(" ")
+    write(z)
+    write(" ")
+    
     dy = yt - y
     dx = xt - x
     dz = zt - z
@@ -55,7 +62,7 @@ function goToCoords(xt, yt, zt)
     UP(dy + 2)
     NORTH()
     if dz < 0 then
-        FW(dz)
+        FW(-1 * dz)
     else
         CC()
         CC()
@@ -64,7 +71,7 @@ function goToCoords(xt, yt, zt)
     NORTH()
     if dx < 0 then
         CCW()
-        FW(dz)
+        FW(-1 * dz)
     else
         CC()
         FW(dz)
@@ -73,9 +80,11 @@ function goToCoords(xt, yt, zt)
 
     x,y,z = gps.locate()
     write(x)
+    write(" ")
     write(y)
+    write(" ")
     write(z)
-    write()
+    write(" ")
 end
 
 function checkInvFull()
@@ -93,3 +102,4 @@ end
 
 checkInvFull()
 goToCoords(-833, 63, 87)
+FW(1)
