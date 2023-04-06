@@ -21,7 +21,7 @@ function CW()
 end
 
 function CCW()
-    turtle.turnRight()
+    turtle.turnLeft()
     facing = (facing - 1) % 4
 end
 
@@ -152,7 +152,7 @@ function Quarry(side)
                 CW()
             end
         end
-        DOWN()
+        DOWN(1)
     end
 end
 checkInvFull()
